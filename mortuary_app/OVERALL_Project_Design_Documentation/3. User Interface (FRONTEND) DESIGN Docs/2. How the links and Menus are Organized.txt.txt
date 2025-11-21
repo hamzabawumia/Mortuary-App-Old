@@ -1,0 +1,27 @@
+The links and Menus are saved as partials in their repective profileapps
+
+i.e. clientprofileapp contains the links and menus for clients
+     and 
+     professionalprofileapp contains the links and menus for professional accounts.
+
+
+The template import flow :
+
+
+templates/base.html -- includes the ff:
+
+        {% include 'template_containers/_navbar.html' %}
+                 -- which also includes the ff:
+
+                        {% include "client_profileapp_containers/menu_partials/client_partial.html" %}
+
+                        {% include "professionals_profileapp_containers/menu_partials/professionals_partial.html" %}
+                                    -- which also includes the ff:
+
+                                            {% include 'professionals_profileapp_containers/menu_partials/doctors_partial.html' %}
+
+                                            {% include 'professionals_profileapp_containers/menu_partials/lab_partial.html' %}
+
+                                            {% include 'professionals_profileapp_containers/menu_partials/nurses_partial.html' %}
+
+                                            {% include 'professionals_profileapp_containers/menu_partials/pharmacy_partial.html' %}

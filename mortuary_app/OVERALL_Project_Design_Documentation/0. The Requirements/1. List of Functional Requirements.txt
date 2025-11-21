@@ -1,0 +1,21 @@
+1. Users should be able to :
+    DONE: Register on their own
+    Patient Registration Form should be different from Health Worker Registration Form
+    User Type will be predetermined base on the form you filled.
+    Patients should be able to book appointments with doctors and nurses
+    
+2. User registration page should show options like: 
+
+    Register as a Patient <br>
+    Register as a Nurse / Mid-Wife <br>
+    Register as a Doctor
+
+    Register as a Medical Laboratory Service
+    Register as an Imaging Center
+    Register as a Pharmacy / Dispensary
+
+
+3. Company Appointment Settings
+4. User Appointment Booking
+5. Email and Reminders for appointments
+6. 

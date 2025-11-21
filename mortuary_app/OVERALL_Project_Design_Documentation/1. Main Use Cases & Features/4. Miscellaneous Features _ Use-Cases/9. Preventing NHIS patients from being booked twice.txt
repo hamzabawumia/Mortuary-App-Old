@@ -1,0 +1,25 @@
+this is accomplished in smcapp1.models.generalconsultating.py
+
+in the clean functions
+
+        # Tryng to prevent the repeating a consultation for the same day - for the same patient.
+        # THIS IS IMPORTANT SINCE GAEC Records guys keep booking patients who return the same day with issues
+        # It was a great trick, same is with the nursesnotes in generalconsulting.py 
+
+
+    def clean(self):
+
+        # Tryng to prevent the repeating a consultation for the same day - for the same patient.
+        # THIS IS IMPORTANT SINCE GAEC Records guys keep booking patients who return the same day with issues
+        # It was a great trick, same is with the nursesnotes in generalconsulting.py 
+
+
+        if not self.id and self.payment_method == 'NHIS':
+            g = GeneralConsulting.objects.filter(
+                patient_ID=self.patient_ID,
+                payment_method = 'NHIS', # this makes it only applicable to only NHIS patients
+                created__date = datetime.today() # __date casts the value as date.
+                )
+            if g:
+                raise ValidationError("This patient has already been booked for the same consultation Today. Kindly Check")
+

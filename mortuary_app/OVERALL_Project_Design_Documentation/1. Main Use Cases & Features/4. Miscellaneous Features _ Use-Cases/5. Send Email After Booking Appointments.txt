@@ -1,0 +1,3 @@
+This is done in the AppointmentController in the store() method.
+
+It relies on the config/mail.js file 

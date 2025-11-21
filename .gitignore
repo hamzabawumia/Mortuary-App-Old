@@ -1,0 +1,65 @@
+# Frappe specific
+*.log
+*.sqlite3
+*.pid
+*.pid.lock
+*.sock
+*.swp
+*.bak
+*.sql
+
+# Virtual Environment
+.venv/
+env/
+envs/
+
+# Node and frontend build artifacts
+node_modules/
+bower_components/
+package-lock.json
+yarn.lock
+*.css.map
+*.js.map
+*.scssc
+
+# Python Bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Frappe specific files that shouldn't be tracked
+*.patch
+*.rej
+*.DS_Store
+*.sublime-workspace
+*.sublime-project
+*.idea/
+*.vscode/
+
+# Frappe site folders (keep these out of version control)
+sites/*/private/
+sites/*/logs/
+sites/*/conf/
+sites/*/assets/
+
+# Frappe database dumps
+*.dump
+*.sql
+*.gz
+*.tar
+*.zip
+
+# Frappe/ERPNext specific files (you usually don't need these)
+frappe-bench/sites/*/config/*.json
+frappe-bench/sites/*/config/*.yml
+
+# Local or dev-only files
+local_settings.py
+.env
+*.env
+
+# Other files you might not want to track
+*.bak
+*.swp
+*.swo

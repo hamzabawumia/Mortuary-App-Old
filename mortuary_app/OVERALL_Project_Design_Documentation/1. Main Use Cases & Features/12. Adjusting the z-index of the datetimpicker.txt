@@ -1,0 +1,3 @@
+        // the default css has a z-index of 9999
+        // i went into to css file @ AdonisJS_Apps\bookma_app\public\css\datetimepicker.css
+        // to search for it and changed it to 99 bcos it was always infront of my drop down menus.

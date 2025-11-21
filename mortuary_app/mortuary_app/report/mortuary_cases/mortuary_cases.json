@@ -1,0 +1,37 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2025-03-28 02:27:49.631547",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [
+  {
+   "default": "Today",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date_of_creation",
+   "mandatory": 0,
+   "wildcard_filter": 0
+  }
+ ],
+ "idx": 2,
+ "is_standard": "Yes",
+ "letterhead": null,
+ "modified": "2025-04-01 06:31:27.623712",
+ "modified_by": "Administrator",
+ "module": "Mortuary App",
+ "name": "Mortuary Cases",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "SELECT \n    CASE \n        WHEN mc.paid = 0 THEN \n            CONCAT(\n                '<a href=\"#\" onclick=\"createMortuaryPayment(\\'', \n                mc.name, '\\', \\'', \n                CONCAT(mcl.first_name, ' ', mcl.last_name), '\\', \\'',\n                IFNULL(mc.grand_total, 0), '\\')\">',  \n                mc.name, '</a>'\n            )\n        ELSE \n            mc.name  -- Just show the name without a link for paid cases\n    END AS item_link,\n    mc.name AS ID,\n    CONCAT(mcl.first_name, ' ', mcl.last_name) AS Patient_Name,\n    mc.creation AS Date_of_Request,\n    mc.grand_total AS Grand_Total,\n    CASE \n        WHEN mc.paid = 1 THEN \n            '<span style=\"background-color:lightgreen; padding:5px; border-radius:5px;\">Paid</span>'\n        ELSE \n            '<span style=\"background-color:lightcoral; padding:5px; border-radius:5px;\">Unpaid</span>'\n    END AS Status\nFROM `tabMortuary Case` mc\nLEFT JOIN `tabMotuary_Client` mcl ON mc.patient__cient = mcl.name\nWHERE DATE(mc.creation) = %(date)s;\n\n\n\n\n/*\nSo there were a few naming errors during the creation of the doctypes\n1. tabMotuary_Client is missing the r for mortuary\n2. patient__cient is missing the l for \nbut these will be kept as they are because changing names causes in consistencies in frappe\n*/\n",
+ "ref_doctype": "Mortuary Case",
+ "report_name": "Mortuary Cases",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  }
+ ],
+ "timeout": 0
+}

@@ -1,0 +1,60 @@
+EACH AlgoDoc is a description of the algorithm used to achieve an aim or a task
+
+
+
+
+
+THE MAIN TASK TO SOLVE: 
+----------------------
+Add radiology bill to the NHIS Claim Sheet and Claim-it Export
+
+
+
+---------
+THE ALGORITHM FLOW CHART
+---------
+# |-------------------------------------------------------------------------------------|
+
+As above
+
+# |-------------------------------------------------------------------------------------|
+
+
+
+
+---------
+KEY STRATEGIES & REASONS FOR CHOOSING THEM
+---------
+# |-------------------------------------------------------------------------------------|
+
+No data flow yet
+but it leads to a page that has links to all the different revenue departments
+
+# |-------------------------------------------------------------------------------------|
+
+
+
+
+-------------------------------
+OTHER ALTERNATIVE ALGORITHIMS & COMPARATIVE ANALYSIS
+-------------------------------
+
+# Config booleans are in the main config file however you may list the key functions that have config options here.
+# Also by listing them here; it will allow you to thing through all the possible configurations while developing this use-case
+
+
+-------------------------------
+DIRECT CHANGE DEPENDENCIES (other use-cases that will be affected if this use-case is editted haphazardly)
+-------------------------------
+
+# List the function and its location plus, state the kind of issues we are likely to have if changes are made haphazardly.
+# i.e. which use-cases will be affected and which functions need to be edited too.
+# 
+
+-------------------------------
+REVERSE CHANGE DEPENDENCIES (other use-cases that will affect this use-case if they are editted)
+-------------------------------
+
+# List the function and its location plus, state the kind of issues we are likely to have if changes are made haphazardly in the other usecase
+# i.e. which use-cases will influence the proper functioning of this current user-case.
+# 

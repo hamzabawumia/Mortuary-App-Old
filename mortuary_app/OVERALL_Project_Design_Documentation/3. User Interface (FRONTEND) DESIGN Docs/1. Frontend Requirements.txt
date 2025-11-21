@@ -1,0 +1,4 @@
+We can use the branding company --- https://smashinglogo.com/
+to get the users logo and idea of colours,etc 
+
+Then we just incorportate bootstrap as usual.

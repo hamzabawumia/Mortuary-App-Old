@@ -1,0 +1,17 @@
+REMEMBER;  a module is simply a code snippet that is imported and used in another file
+
+It is simply a diagram or a chart 
+that shows how your code modules import other modules 
+(and it even shows the location of the module files themselves.)
+
+This is becomes very important especially when you are importing and using several modules all over the place.
+SO IN YOUR APPS - YOU CAN SIMPLY ADD A FILE called module_flow_chart and list them as shown below
+
+
+THE BEST way to show your module chart is to use a module tree like so:
+// Moving from the outermost module and stepping down to the inner_most module.
+
+OUTERMOST_MODULE (this imports MIDDLE_MODULE from "file_location")
+    MIDDLE_MODULE  (this imports INNER_MODULE from "file_location")
+        INNER_MODULE
+            

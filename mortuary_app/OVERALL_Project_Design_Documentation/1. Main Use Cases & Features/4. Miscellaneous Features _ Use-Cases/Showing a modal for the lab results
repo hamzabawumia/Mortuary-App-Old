@@ -1,0 +1,22 @@
+FEATURE : Showing a modal for the lab results
+
+So based on some complaints i have changed the link to show the labs in a modal
+
+The whole modal code is in the smcproject/templates/admin/modal_bootstrap3.html
+
+This modal html page is then included in the smcproject/templates/admin/base.html
+
+Now the "Lab / Other investigations" Link uses the following code to target and call the modal, when clicked
+
+<span style="float:right;">
+                        <button 
+                        class="btn btn-warning" 
+                        style="color:white" 
+                        role="button"
+                        data-toggle="modal" 
+                        data-target="#modal-fullscreen" > Lab / Other Investigation Results  </button>
+<hr>
+
+</span>
+
+the modal contains the iframe with an src to the link that opens the desired page.

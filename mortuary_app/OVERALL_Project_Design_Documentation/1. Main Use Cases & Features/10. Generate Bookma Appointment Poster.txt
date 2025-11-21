@@ -1,0 +1,53 @@
+
+'''
+USE CASE: Generate a Bookma Appointment POSTER
+'''
+
+TRIGGER / ENTRY POINT: User clicks a link on their "/my_companies" page
+                       the link goes to "/company_poster/{{ company.id }}"
+
+'''
+URL / ROUTE: /company_poster/{{ company.id }}
+'''
+
+CONTROLLER / DJANGO VIEW: CompanyController.company_poster()
+
+'''
+RESPONSE TEMPLATE: my_companies/company_poster.edge
+'''
+
+---------
+USER FLOW
+---------
+# |-------------------------------------------------------------------------------------|
+
+User clicks a link on their "/my_companies" page
+                       the link goes to "/company_poster/{{ company.id }}"
+                       the page shows with the poster and bookma image
+
+# |-------------------------------------------------------------------------------------|
+
+
+
+
+---------
+DATA FLOW
+---------
+# |-------------------------------------------------------------------------------------|
+
+user { url:/company_poster/{{ company.id }} } ----> CompanyController.company_poster()
+
+The company id is already passed along in the url
+
+RETURNS WHAT ? ...
+        the page is generated.
+
+# |-------------------------------------------------------------------------------------|
+
+
+Schemas for Models involved:
+
+CompaniesSchema {
+
+    // see the Database Schemas for more details
+}

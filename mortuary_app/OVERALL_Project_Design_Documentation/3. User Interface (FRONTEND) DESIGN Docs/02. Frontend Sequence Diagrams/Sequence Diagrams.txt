@@ -1,0 +1,5 @@
+UI or Client Side Sequence diagrams are very useful as they help you to Visualize your UI function calls from start to finish. E.G. the javascript functions that a called here and there on each event.
+
+You can do sequence diagrams for each use case.  But we mainly focus on the UI events and javascript function calls
+
+NOTE THAT Sequence diagrams becomes very handy when you have many javascript function calls in your UI. Apart from that, I normally don’t use them much.

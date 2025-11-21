@@ -1,0 +1,15 @@
+
+The email is sent at 3 different locations in the code
+
+1. when a user registers - a signal is sent to create a professional profile ( @ professional_profile.models )
+    and also an email is sent to remind them to enter their appointment schedules
+
+
+2. When a professional confirms an appointment - bookma_appointments/confirm_appointment/
+ an email is sent to the client about the confirmed appointment
+
+3. Also when an appoinment is booked or saved - bookma_appointments/appointments_save/
+ an email is sent to the client about the booked appointment
+
+ 4. NO email is sent when a user cancels an appointment.
+ 

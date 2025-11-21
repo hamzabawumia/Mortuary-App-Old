@@ -1,0 +1,7 @@
+Everything starts from the cronjob which is in the server.js file
+
+Now when the This is done in the AppointmentController in the daily_appointments_filter() method.
+
+It relies on the ultramsg-whatsapp
+
+All the code is in the AppointmentController.daily_appointments_filter()

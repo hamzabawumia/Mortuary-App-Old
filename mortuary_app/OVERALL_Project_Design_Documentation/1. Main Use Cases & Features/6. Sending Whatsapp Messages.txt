@@ -1,0 +1,9 @@
+# Ultramsg.com
+
+This is done in the AppointmentController in the store() method.
+
+It relies on the ultramsg-whatsapp
+
+All the code is in the AppointmentController.store()
+
+WHAT IS THE LOGIC / 

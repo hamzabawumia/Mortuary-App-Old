@@ -1,0 +1,28 @@
+we have a custom_settings folder that contains all the custom_settings
+
+This file is imported into our context_processor file:
+
+
+        from custom_settingsapp.custom_settings import *
+
+The context_processor itself contains hard coded lists of access groups and a defined context {}
+
+this is then imported into the settings.py file at the TEMPLATES
+
+like so:
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'generalconsultation_app.context_processors.user_access_lists',
+            ],
+        },
+    },
+]
+
+# note that django requires you to place the context_processor file in a registered app,
+otherwise, it will not work.

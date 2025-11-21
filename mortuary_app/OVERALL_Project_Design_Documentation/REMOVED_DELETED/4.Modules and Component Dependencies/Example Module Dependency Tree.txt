@@ -1,0 +1,38 @@
+REMEMBER;  a module is simply a code snippet that is imported and used in another file
+
+It is simply a diagram or a chart 
+that shows how your code modules import other modules (along with the file paths.)
+
+This becomes very important especially when you are importing and using several modules all over the place.
+SO IN YOUR APPS - YOU CAN SIMPLY ADD A FILE called module_dependency_tree and list them as shown below
+
+
+THE BEST way to show your module chart is to use a module tree like so:
+// Moving from the outermost module and stepping down to the inner_most module.
+
+OUTERMOST_MODULE { imports 
+                        MIDDLE_MODULE from "file_location",
+                        xyz_module from "full_file_path"
+                }
+
+                MIDDLE_MODULE  { imports 
+                                        efg_MODULE from "file_location",
+                                        adc_module from "full_file_path" 
+                            } 
+                            INNER_MODULE  { imports 
+                                        efg_MODULE from "file_location",
+                                        adc_module from "full_file_path" 
+                            }
+            
+            
+            
+Another syntax:
+
+layouts/ # file_path: public/custom_script_files/vue_code.js
+  partials/
+    |-- footer/
+        |-- scripts.html
+        |-- site-footer.html
+    |-- header/
+        |-- header.html
+        |-- site.html

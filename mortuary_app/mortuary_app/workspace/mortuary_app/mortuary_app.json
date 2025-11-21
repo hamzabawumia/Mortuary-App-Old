@@ -1,0 +1,60 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"AsSKPpelR2\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Mortuary App</span>\",\"col\":12}},{\"id\":\"M3BM8VjcLw\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Register a new Client\",\"col\":3}},{\"id\":\"eb_t-23O-H\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Make Mortuary Request(s)\",\"col\":3}},{\"id\":\"6eIRwQY7GG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"View Mortuary Requests\",\"col\":3}},{\"id\":\"p8cJ2WR6l4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Mortuary Payments Report\",\"col\":3}}]",
+ "creation": "2025-04-05 13:09:03.621153",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "table_2",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Mortuary App",
+ "links": [],
+ "modified": "2025-05-15 05:14:22.513671",
+ "modified_by": "Administrator",
+ "module": "Mortuary App",
+ "name": "Mortuary App",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 39.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Mortuary Payments Report",
+   "link_to": "Mortuary Paments Report",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "Register a new Client",
+   "link_to": "Motuary_Client",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "Make Mortuary Request(s)",
+   "link_to": "Mortuary Case",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "View Mortuary Requests",
+   "link_to": "Mortuary Cases",
+   "type": "Report"
+  }
+ ],
+ "title": "Mortuary App"
+}

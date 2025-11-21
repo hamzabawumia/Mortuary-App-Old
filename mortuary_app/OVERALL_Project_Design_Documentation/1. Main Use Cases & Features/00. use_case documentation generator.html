@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<!-- This is basically, a form-driven documentation generator for use cases -->
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Use Case Doc Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: white;
+      color: black;
+      margin: 20px;
+    }
+
+    .dark-mode {
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    .form-container {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 700px;
+      margin: 0 auto 20px;
+    }
+
+    .toggle-btn {
+      padding: 6px 12px;
+      border: none;
+      background-color: #333;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .dark-mode .toggle-btn {
+      background-color: #ddd;
+      color: #121212;
+    }
+
+    .dark-mode input[type="text"], 
+    .dark-mode textarea {
+      background-color: #1e1e1e;
+      color: #fff;
+      border: 1px solid #444;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <h1>📄 Use Case Documentation Generator</h1>
+    <button class="toggle-btn" onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
+  </div>
+
+  <div class="form-container">
+    <form id="useCaseForm">
+      <label>USE CASE (Title):</label>
+      <input type="text" id="useCaseTitle" placeholder="Enter the title of your use case">
+
+      <label>AIM:</label>
+      <textarea id="aim" rows="3" placeholder="Enter the aim of the use case"></textarea>
+
+      <label>ARCHITECTURAL PLAN:</label>
+      <textarea id="plan" rows="3" placeholder="Enter a summary of the main plan"></textarea>
+
+      <label>User Navigation / nav_links:</label>
+      <textarea id="navLinks" rows="2" placeholder="Describe the user navigation or nav links"></textarea>
+
+      <label>URL:</label>
+      <input type="text" id="url" placeholder="/path/to/your/view">
+
+      <label>View:</label>
+      <input type="text" id="view" placeholder="YourViewName">
+
+      <label>Template:</label>
+      <input type="text" id="template" placeholder="template_name.html">
+
+      <label>Models Involved:</label>
+      <textarea id="models" rows="3" placeholder="List the models used in this use case"></textarea>
+
+      <button type="button" onclick="saveAsPythonFile()">💾 Save as .py File</button>
+    </form>
+  </div>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    function generateContent() {
+      const useCaseTitle = document.getElementById('useCaseTitle').value.trim() || 'Untitled Use Case';
+      const aim = document.getElementById('aim').value;
+      const plan = document.getElementById('plan').value;
+      const navLinks = document.getElementById('navLinks').value;
+      const url = document.getElementById('url').value;
+      const view = document.getElementById('view').value;
+      const template = document.getElementById('template').value;
+      const models = document.getElementById('models').value;
+
+      return `
+USE CASE:
+"""
+${useCaseTitle}
+"""
+
+AIM:
+"""
+${aim}
+"""
+
+ARCHITECTURAL PLAN:
+"""
+${plan}
+"""
+
+User Navigation / nav_links:
+"""
+${navLinks}
+"""
+
+URL:
+"""
+${url}
+"""
+
+View:
+"""
+${view}
+"""
+
+Template:
+"""
+${template}
+"""
+
+Models Involved:
+"""
+${models}
+"""
+
+# Start implementing the use case logic here
+`;
+    }
+
+    function saveAsPythonFile() {
+      const content = generateContent();
+      const blob = new Blob([content], { type: "text/x-python;charset=utf-8" });
+      const link = document.createElement("a");
+      const filename = (document.getElementById('useCaseTitle').value.trim() || 'use_case').replace(/\s+/g, '_').toLowerCase();
+
+      link.href = URL.createObjectURL(blob);
+      link.download = `${filename}.py`;
+      link.click();
+
+      document.getElementById('useCaseForm').reset();
+    }
+  </script>
+</body>
+</html>

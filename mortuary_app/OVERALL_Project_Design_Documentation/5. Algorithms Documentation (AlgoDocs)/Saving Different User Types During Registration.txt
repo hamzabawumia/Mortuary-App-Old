@@ -1,0 +1,72 @@
+EACH AlgoDoc is a description of the algorithm used to achieve an aim or a task
+
+
+
+
+
+THE MAIN TASK TO SOLVE: 
+----------------------
+Saving Different User Types During Registration 
+e.g. 
+a user account can either be a "Patients' Account" or a "Health Professional's Account",
+also during registration a user is set to an appropriate boolean such as is_patient or is_nurse, etc.
+
+
+---------
+THE ALGORITHM FLOW CHART
+---------
+# |-------------------------------------------------------------------------------------|
+
+Upon clicking register -- a user is sent to the homepage where there are different links for 
+the different user accounts available 
+e.g. 
+<a href=""> Register as a Patient </a><br>
+<a href=""> Register as a Doctor </a><br>
+
+Now each link goes to a url that determines the form to display in the view.
+Each of the form has some preset values to determine the user type
+hence upon saving the user type is set in the database.
+
+# |-------------------------------------------------------------------------------------|
+
+
+
+
+---------
+KEY STRATEGIES & REASONS FOR CHOOSING THEM
+---------
+# |-------------------------------------------------------------------------------------|
+
+This is the simplest strategy 
+an alternative strategy was to give a dropdown a main form for the user to select their account type
+but this is prone to errors as a user may choose a wrong account type. it can also give room for malicious 
+users to exploit.
+
+# |-------------------------------------------------------------------------------------|
+
+
+
+
+-------------------------------
+OTHER ALTERNATIVE ALGORITHIMS & COMPARATIVE ANALYSIS
+-------------------------------
+
+# 
+# 
+
+
+-------------------------------
+DIRECT CHANGE DEPENDENCIES (other use-cases that will be affected if this use-case is editted haphazardly)
+-------------------------------
+
+# 
+#
+# 
+
+-------------------------------
+REVERSE CHANGE DEPENDENCIES (other use-cases that will affect this use-case if they are editted)
+-------------------------------
+
+# 
+#
+# 

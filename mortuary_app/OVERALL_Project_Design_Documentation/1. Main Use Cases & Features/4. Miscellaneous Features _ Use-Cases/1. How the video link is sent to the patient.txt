@@ -1,0 +1,3 @@
+Once the health professional confirms the appointment
+the permanent video link for the online meeting is then saved as part 
+of that particular appointment. Hence the client can access it.

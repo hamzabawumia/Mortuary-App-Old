@@ -1,0 +1,105 @@
+
+'''
+USE CASE: Professionals should be able to view their current Appointments
+'''
+
+
+TRIGGER / ENTRY POINT: Doctor's Menu --> "View Current Appointments"
+
+'''
+URL / ROUTE: /bookma_appointments/list (path('list', views.List.as_view(), name="list"),)
+'''
+
+DJANGO VIEW: as above
+
+'''
+RESPONSE TEMPLATE: list.html
+'''
+
+---------
+USER FLOW
+---------
+# |-------------------------------------------------------------------------------------|
+
+as above
+
+# |-------------------------------------------------------------------------------------|
+
+
+---------
+FUNCTION CALL FLOW
+---------
+# |-------------------------------------------------------------------------------------|
+
+There are no special fuction calls apart from the ones in the views.py
+
+# |-------------------------------------------------------------------------------------|
+
+---------
+DATA FLOW
+---------
+# |-------------------------------------------------------------------------------------|
+
+The Appointment model is accessed with a qyery that filters as follows:
+
+
+    def get_queryset(self, queryset=None):
+        queryset = the_real_model.objects.filter(professional_id=request.user).order_by("-created_datetime")
+        return queryset
+
+
+# |-------------------------------------------------------------------------------------|
+
+
+Schemas for Models involved:
+
+
+
+class Appointment(models.Model):
+
+    STATUS_CHOICES = (
+        ('pending', 'pending'),
+        ('cancelled', 'cancelled'),
+        ('completed', 'completed'),
+        ('expired', 'expired'),
+    )
+
+    id = models.AutoField(primary_key=True)
+
+    created_datetime = models.DateTimeField(auto_now_add = True)
+    updated_datetime = models.DateTimeField(auto_now=True)
+    
+    created_date = models.DateField(auto_now_add = True)
+    updated_date = models.DateField(auto_now=True)
+
+    updated_by_id = CurrentUserField(on_update=True, related_name ="appointment_updated_by")
+
+    professional_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='professional',) # company or professional receiving the appointment
+
+    user_id = models.ForeignKey(User, related_name='client_user', on_delete=models.CASCADE) # user who is booking the appointment
+
+    other_notes = models.TextField(blank=True, editable=True)
+
+    status = models.CharField(max_length=50, blank=False, default="pending" ,choices=STATUS_CHOICES)
+      
+    appointment_date_and_time = models.DateTimeField(blank=False, null=True )
+
+    appointment_date = models.DateField(blank=False, null=False )
+      # using string because of mysql issue with date formats
+      # also there are timezone differences all over the world and i don't have time to manage that.
+
+    appointment_time = models.TimeField(blank=False, null=False)
+
+    active = models.BooleanField(default=True)
+
+    confirmed_appointment = models.BooleanField(default=False)
+    # once the appointment is confirmed by the professional, then a signal is sent to book a consultation with the users details 
+    # and the consultation is assigned to the professional_id for whom the appointment was initially booked.
+    confirmed_already = models.BooleanField(default=False)
+
+    cancelled = models.BooleanField(default=False)
+
+    cancelled_by = models.ForeignKey(User, related_name='who_cancelled', on_delete=models.CASCADE, null=True) # user who is cancelled the appointment
+
+    completed = models.BooleanField(default=False)
+    # once completed it will be made automatically inactive

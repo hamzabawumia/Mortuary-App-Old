@@ -1,0 +1,25 @@
+Sequence Diagram for booking an appointment:
+
+User --> Select a County --> loadData_Companies() located_@ public/custom_script_files/vue_form.js
+                // this loads the companies for that country
+
+         Select a Company --> load_selected_company_settings() @ public/custom_script_files/vue_form.js
+                // which then sets the value for the "global_settings_variable" located_@ public/custom_script_files/vue_code.js
+
+                        // in the same function above, after the global_settings_variable is set the callendar is refreshed
+                        // and this uses code from vue_code_2_to_reload_the_calendar.js which is imported into the vue_form.js
+                        // during refresh the unavailable days are determined using the same code that gets the remaining time slots
+                        // the logic is simple - if there are no more time slots then the date must be unavailable - duh ?
+                        // Lastly the calendar is able to display which days are available or not by calling the beforeShowDay() function of the datetimepicker
+                        // this function is called for each date that is displayed and takes an array [true] or [false] to determine whether to show the date or not.
+
+
+         Select a Date from datetimepicker which automatically calls --> onSelectDate: in the datetimepicker script @ public/custom_script_files/vue_code.js
+                which in turn calls logic ( currentDateTime )  @ public/custom_script_files/vue_code.js
+                logic contains several functions including vue1.load_settings_for_selected_date(currentDateTime);// THIS WILL SET THE values for "global_used_slots" 
+                and generate a list of available times.
+
+                // once a valid time is selected, we can save and book the appointment.
+
+
+

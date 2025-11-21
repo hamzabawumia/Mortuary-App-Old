@@ -1,0 +1,6 @@
+1. WHAT TYPE OF PROJECT ARCHITECTURE IS USED IN THIS PROJECT
+
+This project uses the -- Client Profile & Professional Profile Architecture
+    i.e. there is an app to manage Client Profiles 
+    and another app to manage Professional Profiles
+    although they are all using the abstract user model as the main User model.

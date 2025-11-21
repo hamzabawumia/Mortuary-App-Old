@@ -1,0 +1,91 @@
+
+'''
+USE CASE: Inactivating a users account due to excessive cancellation
+'''
+# the main suspension check occurs in the SessionController.store()
+
+
+TRIGGER / ENTRY POINT: User cancels appointments > 4 in a month
+
+'''
+URL / ROUTE: /cancel_appointment/:appointment_id
+'''
+
+CONTROLLER / DJANGO VIEW: AppointmentController.cancel
+
+'''
+RESPONSE TEMPLATE: no response template for this usecase
+'''
+
+---------
+USER FLOW
+---------
+# |-------------------------------------------------------------------------------------|
+
+User clicks a link on homepage showing my_appointments
+                       the link goes to /cancel_appointment/:appointment_id
+                       the appointment is cancelled and the user's appointment count is updated to +1
+
+# |-------------------------------------------------------------------------------------|
+
+
+---------
+FUNCTION CALL FLOW
+---------
+# |-------------------------------------------------------------------------------------|
+
+user { url:/cancel_appointment/:appointment_id } ----> AppointmentController.cancel
+
+        this also updates the user.cancellation_count in the user database table
+then the real check for inactivating the user occurs in the SessionController.store()
+it checks to see if the user has a count >=4, 
+
+if so it sends the suspension message as a response
+
+Also once a month the cronjob goes to clear and reset all cancellation counts back to zero 
+simple kraa.
+
+
+similarly there is one for the companies too:
+url: /company_cancel_appointment/:appointment_id   ---> "CompanyController.cancel"
+
+# |-------------------------------------------------------------------------------------|
+
+---------
+DATA FLOW
+---------
+# |-------------------------------------------------------------------------------------|
+
+user { url:/cancel_appointment/:appointment_id } ----> AppointmentController.cancel
+
+
+RETURNS WHAT ? ...
+        this also updates the user.cancellation_count in the user database table
+
+# |-------------------------------------------------------------------------------------|
+
+
+Schemas for Models involved:
+
+class UserSchema extends Schema {
+  up () {
+    this.create('users', (table) => {
+      table.increments('id').notNullable().primary()
+
+      table.string('username', 254).notNullable()
+      
+      table.string('email', 254).notNullable().unique()
+      table.string('password', 60).notNullable()
+      table.string('phone').notNullable()
+
+      table.string('country_code').notNullable()
+
+      table.timestamps()
+      table.boolean("active").defaultTo(1);
+      table.boolean("suspended").defaultTo(0); // this suspended is for manually suspending someone
+      table.integer("cancellation_count").defaultTo(0);
+      table.integer("notified").defaultTo(0); 
+      table.string("notification_date");
+      // if you cancel more that 10 appointments in a year - you will be suspended
+    })
+}

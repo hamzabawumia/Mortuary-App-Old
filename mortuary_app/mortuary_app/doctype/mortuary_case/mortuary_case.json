@@ -1,0 +1,83 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{patient__cient}_{date}_{time}",
+ "creation": "2025-03-26 21:29:13.407879",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "patient__cient",
+  "date",
+  "time",
+  "table_nrzn",
+  "grand_total",
+  "paid"
+ ],
+ "fields": [
+  {
+   "fieldname": "patient__cient",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Patient / Cient",
+   "options": "Motuary_Client",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "default": "Now",
+   "fieldname": "time",
+   "fieldtype": "Time",
+   "label": "Time"
+  },
+  {
+   "fieldname": "table_nrzn",
+   "fieldtype": "Table",
+   "label": "Services / Items",
+   "options": "Mortuary_Orders"
+  },
+  {
+   "fieldname": "grand_total",
+   "fieldtype": "Currency",
+   "label": "Grand_Total",
+   "non_negative": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "paid",
+   "fieldtype": "Check",
+   "label": "Paid",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-05-15 04:57:38.085236",
+ "modified_by": "Administrator",
+ "module": "Mortuary App",
+ "name": "Mortuary Case",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

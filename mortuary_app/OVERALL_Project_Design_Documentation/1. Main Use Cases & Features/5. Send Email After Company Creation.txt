@@ -1,0 +1,149 @@
+
+USE CASE: Sending Emails After Booking an Appointment
+
+TRIGGER / ENTRY POINT: Triggered after a user books an appointment
+
+URL / ROUTE: 
+
+CONTROLLER / DJANGO VIEW: AppointmentController.store()
+
+RESPONSE TEMPLATE: return response.redirect('back') # /resources.views.appointments.partials.appointments_base
+
+
+
+---------
+USER FLOW
+---------
+# |-------------------------------------------------------------------------------------|
+
+No further user activity needed after booking an appointment
+
+# |-------------------------------------------------------------------------------------|
+
+
+
+
+---------
+DATA FLOW
+---------
+# |-------------------------------------------------------------------------------------|
+
+user{ e.g. client } ----> AppointmentController.store() # imports config/mail.js from ??
+
+# Uses the constructor to create a new class, and runs the function to send the email
+
+
+The email template is at resources/views/emails
+
+and the template pointer is set in the mail.js file. located at the root folder /config
+
+
+# |-------------------------------------------------------------------------------------|
+
+
+Schemas for Models involved:
+
+Pharmacy_Stores_Medication_List:
+class Medication_List(models.Model): { 
+    id, 
+    medication_name, 
+    medication_code, 
+    billing_department, 
+    
+    barcode, 
+    medications_category,
+    supplier, 
+    stocked_by_pharmacy, 
+    
+    nhis_drug, 
+    unit_of_sale, 
+    unit_cost_price, 
+    percentage_mark_up,
+    use_mark_up, 
+    
+    unit_selling_price, 
+    nhis_selling_price, 
+    using_co_payment, 
+    calculate_nhis_co_payment, 
+    
+    nhis_co_payment_top_up,  
+    corporate_price, stock 
+
+    minimum_stock_level, 
+    store_stock 
+    minimum_store_stock_level, 
+    facts 
+
+    units, 
+    created
+    updated, 
+    created_date, 
+
+    }
+
+
+
+
+
+class New_Pharmacy_Store_purchases(models.Model): {
+    id,
+    medication_name_id,
+    created,
+    updated,
+    quantity_received,
+
+    created_date,
+    supplier_invoice_num,
+    batch_number, 
+    expiration_date, 
+
+    remarks,
+    purchase_date,
+    unit_of_issuance,
+    unit_cost_price,
+
+    unit_cost2,
+    total_cost_of_purchase, 
+    balance_after_purchase,
+    stock_value_after_purchase,
+    
+    }
+
+
+
+
+
+class Pharmacy_Stores_Requisition_and_Issuance(models.Model): {
+    id,
+    created,
+    updated,
+    request_date,
+
+    item_name_id,
+    unit_of_issue,
+    quantity_required,
+    requesting_department,
+
+   
+    credit_to_dispensary,
+    purpose,
+    status,
+    requested_by,
+
+    approved,
+    approved_by,
+
+    received_by,
+    remarks,
+    quantity_issued,
+    unit_cost,
+    total_value_of_items_issued,
+
+    balance_after_issue
+    item_name,
+    unit_of_issue2,
+    stock_value_after_issuance,
+
+    }
+
+

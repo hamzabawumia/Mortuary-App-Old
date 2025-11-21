@@ -1,0 +1,72 @@
+
+'''
+USE CASE: Mark All Past/Expired Appointments as inactive
+'''
+
+TRIGGER / ENTRY POINT: Each day a cron job runs to mark each expired appointment as inactive
+
+'''
+URL / ROUTE: inactivate_expired_appointments
+'''
+
+CONTROLLER / DJANGO VIEW: AppointmentController.inactivate_expired_appointments()
+
+'''
+RESPONSE TEMPLATE: Nothing to return
+'''
+
+---------
+USER FLOW
+---------
+# |-------------------------------------------------------------------------------------|
+
+No user flow --- It is just a cron job sending an http get request
+
+# |-------------------------------------------------------------------------------------|
+
+
+
+
+---------
+DATA FLOW
+---------
+# |-------------------------------------------------------------------------------------|
+
+cronjob { url:inactivate_expired_appointments } ----> AppointmentController.inactivate_expired_appointments() 
+
+RUNS A QUERY to the database to : .....
+    get all records that are active but appoinment date is yesterday.
+    now for each record found - set the active boolean to false (0). Thus inactivating it.
+
+RETURNS WHAT ? ...
+        No return value in this CASE
+
+# |-------------------------------------------------------------------------------------|
+
+
+Schemas for Models involved:
+
+class AppointmentsSchema extends Schema {
+
+      id
+      user_id'
+      company_id
+      user_email
+
+      table.timestamps()
+
+      other_notes
+      status //(pending, cancelled, completed); 
+         
+      appointment_date_and_time 
+      appointment_date
+      appointment_time
+
+   ** active.defaultTo(1)
+
+
+      cancelled.defaultTo(0); // once cancelled it will be made automatically inactive
+      cancelled_by
+      completed.defaultTo(0)
+
+  }

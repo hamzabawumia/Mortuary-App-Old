@@ -1,0 +1,9 @@
+{
+  "doctype": "Print Format",
+  "name": "Custom Invoice",
+  "module": "mortuary_app",
+  "doc_type": "Sales Invoice",
+  "print_format_type": "Jinja",
+  "html": "mortuary_app/print_format/sales_invoice/custom_invoice.html",
+  "custom_format": 1
+}

@@ -1,0 +1,8 @@
+1. 
+Do the usecase where a patient can login and book their 
+own consultation with their doctor.
+(Think through how best this can be done conveniently)
+
+2. Doctor records vitals during the consultation via zoom.
+
+3. Accessing the custom_settings and User Access List in all templates.

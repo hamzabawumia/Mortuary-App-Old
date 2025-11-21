@@ -1,0 +1,11 @@
+// The whole cronjob should be put in the server.js file so that it can run.
+
+ We are using the 'node-cron' package: npm install --save node-cron
+ 
+// var cron = require('node-cron');
+
+//  cron.schedule('* * * * *', () => {
+//    console.log('Running a job at 01:00 at America/Sao_Paulo timezone');
+//  }, {
+//    scheduled: true,
+//  });

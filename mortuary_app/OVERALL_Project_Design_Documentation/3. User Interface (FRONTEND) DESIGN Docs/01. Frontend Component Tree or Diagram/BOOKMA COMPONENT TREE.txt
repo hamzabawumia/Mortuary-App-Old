@@ -1,0 +1,26 @@
+ <base.edge>
+    @include('layouts.navbar')
+        and navbar also includes business_directory_bar
+             @include('layouts.business_directory_bar')
+
+
+    <vue_code.js> # file_location: public/custom_script_files/vue_code.js
+        # This file also contains the datepicker javascript and its standard variables
+
+    <vue_form.js> # file_location: public/custom_script_files/vue_form.js
+        # This contains the vue_formulate functions and logic
+
+
+
+    <appointments_base.edge> location: resources/views/appointments/partials/appointments_base
+
+        single_person_appointments.edge 
+            # location: resources/views/appointments/partials/single_person_appointments
+            # This file also contains the footer for: "For Businesses / Companies", and Create a company account.
+
+            @include('layouts.footer')
+
+            appointments_form.edge 
+            # location: resources/views/appointments/partials/appointments_form
+            # This file contains the CALENDAR: datetimepicker calender
+                
