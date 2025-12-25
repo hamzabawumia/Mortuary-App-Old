@@ -11,6 +11,17 @@ frappe.ui.form.on("Mortuary Case", {
             // this function is located @
             // "/home/hamza/frappe-bench/apps/mortuary_app/mortuary_app/public/js"
             // and it must be registered in the hooks.py like so : app_include_js = "/assets/mortuary_app/js/createMortuaryPayment.js"
+            // additionally in the hooks.py file; we include the js file in the doctype views like so :
+            // ---------------------------------
+
+            //      # include js in doctype views
+            //      doctype_js = {
+            //     	"Mortuary Case" : "public/js/createMortuaryPayment.js",
+            //      	"Mortuary_Orders" : "public/js/mortuary_orders.js"     
+            //      		}
+
+            //----------------------------------
+
 
             });
 
