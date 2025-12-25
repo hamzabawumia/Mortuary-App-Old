@@ -1,0 +1,92 @@
+1. In the Case/Encounter.js we added a button to receive payments
+
+  
+frappe.ui.form.on("Mortuary Case", {
+    refresh: function(frm) {
+        if (!frm.is_new() && !frm.doc.paid) {
+            // Add "Receive Payment" button
+            frm.add_custom_button("Receive Payment", function() {
+
+            createMortuaryPayment(frm.doc.name, frm.doc.patient__cient, frm.doc.grand_total)
+            // this function is located @
+            // "/home/hamza/frappe-bench/apps/mortuary_app/mortuary_app/public/js"
+            // and it must be registered in the hooks.py like so : app_include_js = "/assets/mortuary_app/js/createMortuaryPayment.js"
+
+            });
+
+
+        }
+
+
+        // 2. Make all fields read-only if paid
+        if (frm.doc.paid) {
+            frm.fields_dict &&
+            Object.keys(frm.fields_dict).forEach(fieldname => {
+                frm.set_df_property(fieldname, "read_only", 1);
+            });
+            frm.refresh_fields();
+        }
+
+
+
+
+    }
+});
+
+
+
+2. When you click on the button, it calls the function passing the appropriate arguments:
+        createMortuaryPayment(frm.doc.name, frm.doc.patient__cient, frm.doc.grand_total)
+
+
+
+
+function createMortuaryPayment(mortuary_case, patient, grand_total) {
+    // console.log("Mortuary Case:", mortuary_case);
+    // console.log("Patient:", patient);
+    // console.log("Grand Total (before conversion):", grand_total);
+
+    let amountPaid = 0;
+    if (typeof grand_total === "string") {
+        amountPaid = parseFloat(grand_total.replace(/,/g, '')) || 0;
+    } else if (typeof grand_total === "number") {
+        amountPaid = grand_total;
+    }
+
+    // console.log("Grand Total (after conversion):", amountPaid);
+
+    frappe.new_doc('Mortuary_Payments');
+
+    frappe.ui.form.on("Mortuary_Payments", "onload", function(frm) {
+        // console.log("Form Loaded. Setting values...");
+
+        // Set field values
+        frm.set_value("invoice_id", mortuary_case);
+        frm.set_value("client_name", patient);
+        frm.set_value("amount_paid", amountPaid);
+        frm.set_value("received_by", frappe.session.user);
+
+        // Make fields read-only
+        frm.set_df_property("invoice_id", "read_only", 1);
+        frm.set_df_property("client_name", "read_only", 1);
+        frm.set_df_property("amount_paid", "read_only", 1);
+        frm.set_df_property("received_by", "read_only", 1);
+
+        // Ensure UI updates
+        frm.refresh_field("invoice_id");
+        frm.refresh_field("client_name");
+        frm.refresh_field("amount_paid");
+        frm.refresh_field("received_by");
+
+        // console.log("Fields set to read-only.");
+    });
+
+        // Open receipt after saving
+        frappe.ui.form.on("Mortuary_Payments", "after_save", function(frm) {
+            let receipt_url = `/printview?doctype=Mortuary_Payments&name=${frm.doc.name}&format=Your Custom Print Format&no_letterhead=0`;
+            window.open(receipt_url, "_blank");
+        });
+
+
+}
+
